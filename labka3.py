@@ -107,7 +107,8 @@ class APA(server.App):
         region = int(params['region'])
         week_interval = params['week_interval'].split('-')
         date_range = params['date_range'].split('-')
-
+ 
+        #change with your pathfolder
         df = read_and_create_data_frame('/home/kunopohui/Downloads/csv')
 
         processed_data = df[(df['area'] == region) & 

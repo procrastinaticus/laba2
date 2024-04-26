@@ -16,13 +16,38 @@ state_id_name = {1: "Cherkasy", 2: "Chernihiv", 3: "Chernivtsi", 4: "Crimea", 5:
             26: "Zaporizhzhya", 27: "Zhytomyr"}
 
 
+
+def check_if_exist(path):
+    if not os.path.exists(path):
+        os.makedirs(path)
+
+    dir = os.listdir(path) 
+  
+    if len(dir) == 0:
+        for i in range(1,28):
+            get_data(i)  
+
+
+def get_data(province_id):
+
+    url = f"https://www.star.nesdis.noaa.gov/smcd/emb/vci/VH/get_TS_admin.php?country=UKR&provinceID={province_id}&year1=1981&year2=2024&type=Mean"
+    vhi_url = urllib.request.urlopen(url)
+    
+
+    now = datetime.now().strftime('%Y-%m-%d_%H-%M')
+    filename = f'vhi_id_{province_id}_{now}.csv'
+    filepath = f'{path}/{filename}'
+    with open(filepath, 'wb') as out:
+        out.write(vhi_url.read())
+    print(f"VHI was downloaded in {filepath}")
+
+
+
 def read_and_create_data_frame(path):
     
     out_df = pd.DataFrame()
 
-    #change with your pathfolder
-
-    csv_files = os.listdir('/home/kunopohui/Downloads/csv')
+    csv_files = os.listdir('/home/kunopohui/Downloads/csv')  #change with your pathfolder
 
     frames = []
 
@@ -107,9 +132,10 @@ class APA(server.App):
         region = int(params['region'])
         week_interval = params['week_interval'].split('-')
         date_range = params['date_range'].split('-')
- 
-        #change with your pathfolder
-        df = read_and_create_data_frame('/home/kunopohui/Downloads/csv')
+
+
+                                                                                
+        df = read_and_create_data_frame('/home/kunopohui/Downloads/csv')   #change with your pathfolder 
 
         processed_data = df[(df['area'] == region) & 
                                 (df['Year'].between(int(date_range[0]), int(date_range[1]))) &
@@ -128,11 +154,6 @@ class APA(server.App):
         processed_data = self.getData(params)
 
 
-        
-        processed_data = processed_data[(processed_data['Year'].between(int(date_range[0]), int(date_range[1]))) &
-                                      (processed_data['Week'].between(int(week_interval[0]), int(week_interval[1])))]
-
-        # Creating a heatmap
         pivot_data = processed_data.pivot(index='Year', columns='Week', values=index)
         plt.figure(figsize=(25, 20))
         sns.heatmap(pivot_data, cmap="inferno", annot=True)
@@ -145,9 +166,9 @@ class APA(server.App):
 
 def main():
 
-    #change with your pathfolder      
+   
 
-    
+    check_if_exist('/home/kunopohui/Downloads/csv') #change with your pathfolder 
     app = APA()
     app.launch()
 

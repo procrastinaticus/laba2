@@ -145,7 +145,6 @@ class APA(server.App):
 def main():
 
     #change with your pathfolder      
-    df = read_and_create_data_frame('/home/kunopohui/Downloads/csv')
 
     
     app = APA()

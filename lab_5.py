@@ -1,3 +1,12 @@
+#lab5 
+
+
+#Мета роботи: отримати поглиблені навички з візуалізації даних; ознайомитись з matplotlib.widgets,
+#scipy.signal.filters, а також з Plotly, Bokeh, Altair; отримати навички зі створення інтерактивних
+#застосунків для швидкого підбору параметрів і аналізу отриманих результатів
+
+#matplotlib
+
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider, Button, CheckButtons
 import numpy as np

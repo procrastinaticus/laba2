@@ -115,8 +115,8 @@ s_cutoff_frequency = Slider(ax_cutoff_frequency, 'Cutoff Frequency', 0.1, 10.0, 
 
 
 
-rax = plt.axes([0.12, 0.03, 0.1, 0.04], facecolor=axcolor)
-cb_show_noise = CheckButtons(rax, ['Show Noise'], [True]) #noise checkbox
+chb = plt.axes([0.12, 0.03, 0.1, 0.04], facecolor=axcolor)
+cb_show_noise = CheckButtons(chb, ['Show Noise'], [True]) #noise checkbox
 
 
 button_regenerate_noise = Button(plt.axes([0.48, 0.03, 0.1, 0.04]), 'Regenerate Noise', color=axcolor, hovercolor='0.975') #regenerate noise button

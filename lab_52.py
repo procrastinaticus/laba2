@@ -1,3 +1,14 @@
+#lab5 
+
+
+#Мета роботи: отримати поглиблені навички з візуалізації даних; ознайомитись з matplotlib.widgets,
+#scipy.signal.filters, а також з Plotly, Bokeh, Altair; отримати навички зі створення інтерактивних
+#застосунків для швидкого підбору параметрів і аналізу отриманих результатів
+
+#bokeh was chosen
+
+
+
 from bokeh.plotting import figure, curdoc
 from bokeh.layouts import column, row
 from bokeh.models import Slider, CheckboxGroup, Button

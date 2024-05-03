@@ -53,14 +53,14 @@ ax.grid()
 ax.set_xlim(0, 10)
 plt.subplots_adjust(left=0.1, bottom=0.45, top=0.95)
 
-
+#butterworth filter
 def butter_lowpass_filter(cutoff, fs, order=5):
     nyq = 0.5 * fs
     normal_cutoff = cutoff / nyq
     b, a = butter(order, normal_cutoff, btype='low', analog=False)
     return b, a
 
-# Функція для застосування фільтра до сигналу
+#filtering
 def lowpass_filter(data, cutoff_freq, fs, order=5):
     b, a = butter_lowpass_filter(cutoff_freq, fs, order=order)
     y = filtfilt(b, a, data)

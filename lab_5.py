@@ -168,7 +168,7 @@ def update_noise(val):
     
 #regenerate_noise
 def regenerate_noise(event):
-    with_noise_line.set_ydata(harmonic_with_noise(time, s_amplitude.val, s_frequency.val, s_phase.val, s_noise_mean.val, s_noise_covariance.val, show_noise=True))
+    with_noise_line.set_ydata(harmonic_with_noise(time, s_amplitude.val, s_frequency.val, s_phase.val, s_noise_mean.val, s_noise_covariance.val, cb_show_noise.get_status()[0])))
     fig.canvas.draw_idle()
 
 
